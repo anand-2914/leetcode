@@ -1,25 +1,24 @@
 class Solution {
-    private String getFormattedEmail(String email) {
-        String[] arr = email.split("@");
-        String localName = arr[0];
-        String domainName = arr[1];
+    public String format(String email){
+        String []arr=email.split("@");
+        String local=arr[0];
+        String domain=arr[1];
 
-        // Only keep the first part of "+" sign
-        String[] arrLocalWithPlus = localName.split("\\+");
-        localName = arrLocalWithPlus[0];
+        String[] localname=local.split("\\+");
+        local=localname[0];
 
-        // Replace "."/dots
-        localName = localName.replace(".", "");
+        local=local.replace(".","");
+        return local + "@" + domain;
 
-        return localName + "@" + domainName;
+       
     }
-    
     public int numUniqueEmails(String[] emails) {
-        Set<String> uniqueEmails = new HashSet<>();
-        for(String email: emails) {
-            String formattedEmail = getFormattedEmail(email);
-            uniqueEmails.add(formattedEmail);
+         Set<String>uni=new HashSet<>();
+
+        for(String email:emails){
+            String femail=format(email);
+            uni.add(femail);
         }
-        return uniqueEmails.size();
+        return uni.size();
     }
 }
