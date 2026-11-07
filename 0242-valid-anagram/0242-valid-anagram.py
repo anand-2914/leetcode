@@ -5,6 +5,15 @@ class Solution(object):
         :type t: str
         :rtype: bool
         """
+        if len(s)!=len(t):
+            return False
+        count={}
+        for char in s:
+            count[char]=count.get(char,0)+1
+        for char in t:
+            if char not in count or count[char] == 0:
+                return False
 
-        return sorted(s)==sorted(t)
+            count[char]-=1
+        return True
         
